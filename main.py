@@ -51,6 +51,14 @@ def parse_text(text_message):
         return message
 
 
+@app.route('/', methods=['POST', 'GET'])
+def index():
+    if request.method == 'POST':
+        resp = request.get_json()
+        return '<h1>Hi bot!</h1>'
+    return '<h1>Hi bot!</h1>'
+
+
 class BotAPI(MethodView):
 
     def get(self):
