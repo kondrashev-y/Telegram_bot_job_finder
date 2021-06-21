@@ -27,8 +27,8 @@ def send_message(chat_id, msg):
 
 
 def parse_text(text_message):
-    """Парсин приходящих сообзений"""
-    adrrsses = {'city': '/cities', 'lang': '/lang'}
+    """Парсер входящих сообщений"""
+    addresses = {'city': '/cities', 'lang': '/lang'}
     command_p = r'/\w+'
     doc_pattern = r'@\w+'
     message = 'Неверный запрос'
@@ -41,7 +41,7 @@ def parse_text(text_message):
             return message
         else:
             command = re.search(command_p, text_message).group().replace('/', '')
-            command = adrrsses.get(command, None)
+            command = addresses.get(command, None)
             return [command] if command else None
     elif '@' in text_message:
         result = re.findall(doc_pattern, text_message)
@@ -54,12 +54,12 @@ def parse_text(text_message):
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
-        resp = request.get_json()
         return '<h1>Hi bot!</h1>'
     return '<h1>Hi bot!</h1>'
 
 
 class BotAPI(MethodView):
+    """Оправление сообщений клиенту"""
 
     def get(self):
         return '<h1>Hi bot_class!</h1>'
@@ -80,7 +80,7 @@ class BotAPI(MethodView):
                 resp = get_data_from_api(tmp[0])
                 if resp:
                     for d in resp:
-                        message += '#' + '`' + d['slug'] + '`' + '\n'
+                        message += '`' + d['slug'] + '`' + '\n'
                     if tmp[0] == '/lang':
                         msg = "Доступные языки: \n"
                     else:
