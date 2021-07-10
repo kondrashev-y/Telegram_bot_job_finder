@@ -15,8 +15,10 @@ TELEGRAM_URL = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
 
 def get_data_from_api(command):
     url = API_URL + command
+    print(url, 'this is URL+command')
     session = requests.Session()
     r = session.get(url).json()
+    print(r, 'this is r in get_data_from_api')
     return r
 
 
@@ -68,6 +70,7 @@ class BotAPI(MethodView):
         resp = request.get_json()
         text_massage = resp['message']['text']
         chat_id = resp['message']['chat']['id']
+        print(text_massage, 'this text_message in BotAPI')
         tmp = parse_text(text_massage)
         text_error = 'Неверный запрос'
         text_server_error = 'Сервер не отвечает'
