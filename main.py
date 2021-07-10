@@ -17,9 +17,9 @@ def get_data_from_api(command):
     url = API_URL + command
     print(url, 'this is URL+command')
     session = requests.Session()
-    r = session.get(url).json()
+    r = session.get(url)
     print(r, 'this is r in get_data_from_api')
-    return r
+    return r.json()
 
 
 def send_message(chat_id, msg):
