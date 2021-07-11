@@ -31,7 +31,7 @@ def send_message(chat_id, msg):
 
 def parse_text(text_message):
     """Парсер входящих сообщений"""
-    addresses = {'city': '/cities', 'lang': '/lang'}
+    addresses = {'city': 'cities', 'lang': 'lang'}
     command_p = r'/\w+'
     doc_pattern = r'@\w+'
     message = 'Неверный запрос'
