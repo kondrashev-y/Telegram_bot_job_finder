@@ -125,7 +125,7 @@ def other_message(message):
     bot.send_message(message.chat.id, 'Упс, неверная команда, попробуйте еще раз.')
 
 
-@app.route("/" + TOKEN, methods=['POST'])
+@app.route("/" + TOKEN + "/", methods=['POST'])
 def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     return "!", 200
