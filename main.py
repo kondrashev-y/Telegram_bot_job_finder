@@ -127,6 +127,7 @@ def other_message(message):
 
 @app.route("/" + TOKEN + "/", methods=['POST'])
 def getMessage():
+    print('getMessage work')
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     return "!", 200
 
