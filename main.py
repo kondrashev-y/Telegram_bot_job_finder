@@ -9,7 +9,6 @@ app = Flask(__name__)
 TOKEN = os.environ.get('TOKEN')
 API_URL = os.environ.get('API_URL')
 bot = telebot.TeleBot(TOKEN)
-BOT_URL = os.environ.get('BOT_URL')
 
 
 choice_lang = ''
@@ -136,9 +135,6 @@ def getMessage():
 def index():
     return '<h1>Hi bot!</h1>'
 
-
-bot.remove_webhook()
-bot.set_webhook(BOT_URL + TOKEN)
 
 if __name__ == '__main__':
     app.run()
