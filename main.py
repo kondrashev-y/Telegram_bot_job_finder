@@ -95,6 +95,7 @@ def callback_inline(call):
         choice_city = call.data
         bot.send_message(call.message.chat.id, f'Город - {call.data}')
         bot.send_message(call.message.chat.id, 'Подождите, загружаю...')
+        print(choice_lang, choice_city)
         try:
             if choice_city and choice_lang:
                 command = f'/vacancy/?city={choice_city}&lang={choice_lang}'
