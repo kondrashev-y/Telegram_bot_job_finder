@@ -1,6 +1,6 @@
 import requests
 from flask import Flask
-from flask import request, Response
+from flask import request
 import telebot
 import os
 
