@@ -118,7 +118,7 @@ def callback_inline(call):
                     markup.add(*buttons)
                     bot.send_message(call.message.chat.id, 'Доступные вакансии', reply_markup=markup)
             else:
-                bot.send_message(call.chat.id, 'Что то пошло не  так, выберите язык и город')
+                bot.send_message(call.message.chat.id, 'Что то пошло не  так, выберите язык и город')
         except Exception as e:
             print(repr(e))
 
