@@ -69,7 +69,7 @@ def lang(call):
     for item in lang_list:
         buttons.append(telebot.types.InlineKeyboardButton(text=item['name'], callback_data=item['slug']))
     markup.add(*buttons)
-    bot.send_message(call.message.chat.id, 'Выберите город', reply_markup=markup)
+    bot.send_message(call.message.chat.id, 'Выберите язык', reply_markup=markup)
 
 
 @bot.callback_query_handler(func=lambda call: call.data in lang_slug_list + cities_slug_list)
@@ -82,6 +82,8 @@ def callback_inline(call):
         markup = telebot.types.InlineKeyboardMarkup()
         buttons = []
 
+        bot.send_message(call.message.chat.id, f'Язык - {call.data}')
+
         for city in cities_list:
             buttons.append(markup.add(telebot.types.InlineKeyboardButton(text=city['name'],
                                                                          callback_data=city['slug'])))
@@ -91,6 +93,7 @@ def callback_inline(call):
     elif call.data in cities_slug_list:
         bot.edit_message_reply_markup(call.message.chat.id, call.message.id)
         choice_city = call.data
+        bot.send_message(call.message.chat.id, f'Город - {call.data}')
         bot.send_message(call.message.chat.id, 'Подождите, загружаю...')
         try:
             if choice_city and choice_lang:
